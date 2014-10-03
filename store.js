@@ -16,7 +16,7 @@ module.exports = {
   	return _.where(data, properties);
   }
 }
-
+/*  create fake tweet script
 var randArrayEl = function(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
@@ -35,3 +35,4 @@ var getFakeTweet = function() {
 for(var i=0; i<10; i++) {
   module.exports.push(getFakeName(), getFakeTweet());
 }
+*/
