@@ -85,9 +85,14 @@
   var socket = io.connect(); // TIP: .connect with no args does auto-discovery
   // when 'new_tweet' events are fired, take our file obj object and do something with it
   socket.on('new_tweet', function (new_tweet) { 
-       //console.log('this tweet', new_tweet.name);
-       location.reload();  //ajax call is faster
-       //alert('Refreshing... check the console...');
+       // console.log('this tweet', new_tweet.name);
+       
+       $("#tweetPlace").prepend('<li>' +new_tweet.text + ' - ' +new_tweet.name + '</li>');
+       
+       // location.reload() : simple-slow-bad
+       // ajax call is faster and better : only work with one client
+       // next step: send the whole DOM structure via socket.emit. Need to think more about it 
+       // because can't user regular html command in a JS file. 
     }); 
 </script>
 </html>
