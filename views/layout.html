@@ -90,7 +90,7 @@
        $("#tweetPlace").prepend('<li>' +new_tweet.text + ' - ' +new_tweet.name + '</li>');
        
        // location.reload() : simple-slow-bad
-       // ajax call is faster and better : only work with one client
+       // 
        // next step: send the whole DOM structure via socket.emit. Need to think more about it 
        // because can't user regular html command in a JS file. 
     }); 

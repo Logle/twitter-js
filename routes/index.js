@@ -2,29 +2,39 @@ var store = require('../store');
 var express = require('express');
 var router = express.Router();
 
+var setCookie = function(cookie){
+  if (cookie===undefined) return 'Anonymous'
+    else return cookie;
+}
+
 /* GET home page. */
 router.get('/', function(req, res) {
   var tweets = store.list();
-  res.render('index', { title: 'Twitter.js', tweets: tweets});
+  var username = setCookie(req.cookies.username);
+  res.render('index', {title: 'Twitter.js', tweets: tweets, username: username});
 });
 
 
 router.get('/users/:name', function(req, res) {
   var name = req.params.name;
-  var tweets = store.find({name: name});
-  // console.log(store.list()); 
-  res.render('index', { title: 'Twitter.js - Posts by '+name, tweets:tweets });
+  var tweets = store.find({name: name}); 
+  var username = setCookie(req.cookies.username);
+  res.render('index', {title: 'Twitter.js - Posts by '+name, tweets:tweets, username: username});
 });
 
 router.post('/submit', function(req, res, next) {
   var name = req.body.name;
   var text = req.body.text;
+  if (req.body.hasOwnProperty('checkbox')){
+    res.cookie('username', name);
+  };
   io.sockets.emit('new_tweet',{
   	name: name,
   	text: text
   });
   store.push(name, text);
   res.redirect('/');
+
 });
 
 module.exports = router;

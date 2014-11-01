@@ -4,10 +4,10 @@ var data = [];
  
 module.exports = {
   push: function(name, text) {
-	data.unshift({
+	 data.unshift({
 		"name": name,
 		"text": text
-	})  	
+	 });  	
   },
   list: function() {
   	return data;

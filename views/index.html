@@ -5,18 +5,20 @@
   <div class="page-header">
     <h1>Welcome to Twitter.js !</h1>
   </div>
-  
   <div class="row">
     <div id='thisform'>
-     <form action="/submit" method="POST">
+     <form action="/submit" method="POST" onsubmit="">
       <label for="name_field">Name:</label>
-      <input name="name" autofocus type="text" id="name_field" />
+      <input name="name" value={{username}} type="text" id="name_field" />
       <label for="text_field">Text:</label>
-      <input name="text" type="text" id="text_field" style="width: 350px;" />
-      <input type="submit" value="Submit" />
+      <input name="text" autofocus type="text" id="text_field" />
+      <input type="submit" class="btn btn-success" id="sub"/>
+      <div type='checkbox'>
+        <label>
+          <input name='checkbox' type="checkbox" checked/> Remember name
+        </label>
+      </div>
     </form>
-    </div>
-    <br>
     <br>
     <h3>{{title}}</h3>
     <div class="col-md-9" id="tweetPlace">
@@ -27,5 +29,6 @@
     </div>
     <!-- add form -->
   </div>
-  
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+ 
 {% endblock %}
